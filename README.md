@@ -7,6 +7,10 @@ I'm a **Data Engineer** with a scientific backbone — I hold a Ph.D. in Ecology
 - Building end‑to‑end pipelines with Airflow, dbt, and cloud platforms  
 - Exploring geospatial data workflows (one of my long‑time passions)
 
+## 🌦️ Current Project: Climate & Mobility Pipeline
+I’m actively building a cloud‑native data pipeline that integrates weather data, mobility datasets, and streaming traffic events.  
+The goal is to explore how climate conditions shape mobility patterns — and to showcase modern data engineering practices across ingestion, storage, orchestration, and modeling.
+
 ## 🧰 Tech I Enjoy Using
 - **Languages:** Python, SQL, R  
 - **Data Engineering:** ETL/ELT, Data Modeling, Warehousing  
