@@ -5,6 +5,13 @@ from datetime import datetime, timezone
 from typing import List, Dict, Any
 import requests
 from azure.storage.blob import BlobServiceClient, ContentSettings
+import yaml
+
+# ---------------------------------------------------------
+# Setting up paths
+# ---------------------------------------------------------
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))                 # ingestion/api_weather/
+PROJECT_ROOT = os.path.abspath(os.path.join(BASE_DIR, "..", ".."))   # climate_mobility_pipeline/
 
 # ---------------------------------------------------------
 # Logging Configuration
@@ -14,6 +21,14 @@ logging.basicConfig(
     format="%(asctime)s | %(levelname)s | %(message)s"
 )
 logger = logging.getLogger(__name__)
+
+# ---------------------------------------------------------
+# Configuration Loader
+# ---------------------------------------------------------
+def load_config():
+    config_path = os.path.abspath(os.path.join(PROJECT_ROOT, "config.yaml"))
+    with open(config_path, "r") as f:
+        return yaml.safe_load(f)
 
 # ---------------------------------------------------------
 # API Client
@@ -49,11 +64,6 @@ def fetch_weather_data(
 # ---------------------------------------------------------
 # Local Storage
 # ---------------------------------------------------------
-# Save to climate_mobility_pipeline/data/raw
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))                 # ingestion/api_weather/
-PROJECT_ROOT = os.path.abspath(os.path.join(BASE_DIR, "..", ".."))   # climate_mobility_pipeline/
-OUTPUT_DIR = os.path.join(PROJECT_ROOT, "data", "raw")
-
 def save_to_local(data: Dict[str, Any], output_dir: str) -> str:
     """
     Save weather data to a timestamped JSON file.
@@ -113,14 +123,20 @@ def upload_to_azure_blob(
 # Main Execution
 # ---------------------------------------------------------
 def main():
+    config = load_config()
+
     # Weather configuration
-    LATITUDE = 41.9028
-    LONGITUDE = 12.4964
-    VARIABLES = ["temperature_2m", "precipitation", "windspeed_10m"]
+    LATITUDE = config["weather"]["latitude"]
+    LONGITUDE = config["weather"]["longitude"]
+    VARIABLES = config["weather"]["variables"]
+
+    # Paths
+    OUTPUT_DIR = os.path.join(PROJECT_ROOT, config["paths"]["raw_data"])
 
     # Azure configuration (use environment variables for safety)
     AZURE_CONNECTION_STRING = os.getenv("AZURE_STORAGE_CONNECTION_STRING")
-    CONTAINER_NAME = "weather-raw"
+    CONTAINER_NAME = config["azure"]["container_name"]
+    BLOB_PREFIX = config["azure"]["blob_prefix"]
 
     # Fetch data
     weather_data = fetch_weather_data(
@@ -134,7 +150,7 @@ def main():
 
     # Upload to Azure
     if AZURE_CONNECTION_STRING:
-        blob_name = f"weather/{os.path.basename(local_file)}"
+        blob_name = f"{BLOB_PREFIX}/{os.path.basename(local_file)}"
         upload_to_azure_blob(
             local_path=local_file,
             connection_string=AZURE_CONNECTION_STRING,
