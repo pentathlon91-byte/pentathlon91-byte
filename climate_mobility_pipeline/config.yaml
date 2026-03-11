@@ -1,0 +1,14 @@
+weather:
+  latitude: 41.9028
+  longitude: 12.4964
+  variables:
+    - temperature_2m
+    - precipitation
+    - windspeed_10m
+
+paths:
+  raw_data: "data/raw"
+
+azure:
+  container_name: "weather-raw"
+  blob_prefix: "weather"
