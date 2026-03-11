@@ -76,8 +76,8 @@ climate_mobility_pipeline/
   ingestion/
     api_weather/
       fetch_weather.py
-      data/
-        raw/
+  data/
+    raw/
   README.md
 ```
 
