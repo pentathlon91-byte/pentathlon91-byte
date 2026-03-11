@@ -49,6 +49,11 @@ def fetch_weather_data(
 # ---------------------------------------------------------
 # Local Storage
 # ---------------------------------------------------------
+# Save to climate_mobility_pipeline/data/raw
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))                 # ingestion/api_weather/
+PROJECT_ROOT = os.path.abspath(os.path.join(BASE_DIR, "..", ".."))   # climate_mobility_pipeline/
+OUTPUT_DIR = os.path.join(PROJECT_ROOT, "data", "raw")
+
 def save_to_local(data: Dict[str, Any], output_dir: str) -> str:
     """
     Save weather data to a timestamped JSON file.
@@ -112,9 +117,6 @@ def main():
     LATITUDE = 41.9028
     LONGITUDE = 12.4964
     VARIABLES = ["temperature_2m", "precipitation", "windspeed_10m"]
-
-    # Local storage
-    OUTPUT_DIR = "data/raw/weather"
 
     # Azure configuration (use environment variables for safety)
     AZURE_CONNECTION_STRING = os.getenv("AZURE_STORAGE_CONNECTION_STRING")
