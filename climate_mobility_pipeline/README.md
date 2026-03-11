@@ -78,7 +78,9 @@ climate_mobility_pipeline/
       fetch_weather.py
   data/
     raw/
+      weather/
   README.md
+  config.yaml
 ```
 
 ---
