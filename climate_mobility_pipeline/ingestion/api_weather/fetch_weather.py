@@ -131,7 +131,7 @@ def main():
     VARIABLES = config["weather"]["variables"]
 
     # Paths
-    OUTPUT_DIR = os.path.join(PROJECT_ROOT, config["paths"]["raw_data"])
+    OUTPUT_DIR = os.path.join(PROJECT_ROOT, config["paths"]["raw_data_weather"])
 
     # Azure configuration (use environment variables for safety)
     AZURE_CONNECTION_STRING = os.getenv("AZURE_STORAGE_CONNECTION_STRING")

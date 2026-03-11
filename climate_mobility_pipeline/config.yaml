@@ -7,7 +7,7 @@ weather:
     - windspeed_10m
 
 paths:
-  raw_data: "data/raw"
+  raw_data_weather: "data/raw/weather"
 
 azure:
   container_name: "weather-raw"
