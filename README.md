@@ -1,6 +1,6 @@
 # Hey, I'm Daniele 👋
 
-I'm a **Data Engineer** with a scientific backbone — I hold a Ph.D. in Ecology and have spent years turning complex data into clear, actionable insights. Today, I’m focused on building modern, scalable data pipelines and sharpening my cloud engineering skills.
+I'm a **Data Engineer** with a scientific backbone. I hold a Ph.D. in Ecology and have spent years turning complex data into clear, actionable insights. Today, I’m focused on building modern, scalable data pipelines and sharpening my cloud engineering skills.
 
 ## 🚀 What I’m Working On
 - Growing into full‑cycle **Data Engineering**, from ingestion to orchestration to modeling  
@@ -9,7 +9,7 @@ I'm a **Data Engineer** with a scientific backbone — I hold a Ph.D. in Ecology
 
 ## 🌦️ Current Project: Climate & Mobility Pipeline
 I’m actively building a cloud‑native data pipeline that integrates weather data, mobility datasets, and streaming traffic events.  
-The goal is to explore how climate conditions shape mobility patterns — and to showcase modern data engineering practices across ingestion, storage, orchestration, and modeling.
+The goal is to explore how climate conditions shape mobility patterns, and to showcase modern data engineering practices across ingestion, storage, orchestration, and modeling.
 
 ## 🧰 Tech I Enjoy Using
 - **Languages:** Python, SQL, R  
