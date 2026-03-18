@@ -6,9 +6,20 @@ weather:
     - precipitation
     - windspeed_10m
 
+  azure:
+    container_name: "weather-raw"
+    blob_prefix: "weather"
+
 paths:
   raw_data_weather: "data/raw/weather"
+  raw_data_mobility: "data/raw/mobility_rome_taxi"
 
-azure:
-  container_name: "weather-raw"
-  blob_prefix: "weather"
+mobility:
+  azure:
+    container_name: "data"
+    blob_path: "external/rome_taxi/taxi_february.tar.gz"
+
+  local:
+    external_dir: "data/external/rome_taxi"
+    archive_name: "taxi_february.tar.gz"
+    extracted_subdir: "extracted"
