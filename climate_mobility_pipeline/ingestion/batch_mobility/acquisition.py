@@ -8,7 +8,6 @@ from azure.storage.blob import BlobServiceClient
 # Connection string must be provided via environment variable.
 AZURE_CONNECTION_STRING = os.getenv("AZURE_STORAGE_CONNECTION_STRING")
 
-
 # ---------------------------------------------------------
 # Download Function
 # ---------------------------------------------------------
