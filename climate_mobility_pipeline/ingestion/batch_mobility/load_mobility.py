@@ -10,7 +10,7 @@ from climate_mobility_pipeline.ingestion.batch_mobility.extraction import extrac
 # Path Setup
 # ---------------------------------------------------------
 BASE_DIR = Path(__file__).resolve().parent          # ingestion/batch_mobility/
-PROJECT_ROOT = BASE_DIR.parents[2]                  # climate_mobility_pipeline/
+PROJECT_ROOT = BASE_DIR.parents[1]                  # climate_mobility_pipeline/
 
 def main():
     # -----------------------------
