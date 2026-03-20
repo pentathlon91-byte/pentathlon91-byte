@@ -1,25 +1,57 @@
+azure:
+  storage_account: "climate_mobility_pipeline"
+  container: "climatemobility"
+  connection_string_env: "AZURE_STORAGE_CONNECTION_STRING"
+
+paths:
+  # -------------------------
+  # Local development paths
+  # -------------------------
+  local_base: "data/"
+  local_raw: "data/raw/"
+  local_processed: "data/processed/"
+  local_curated: "data/curated/"
+
+  # -------------------------
+  # Azure data lake layout
+  # -------------------------
+  raw:
+    weather: "raw/weather/"
+    mobility_external: "raw/mobility/external/"
+    mobility_txt: "raw/mobility/txt/"
+    traffic_stream: "raw/traffic_stream/"
+
+  processed:
+    weather: "processed/weather/"
+    mobility: "processed/mobility/"
+    traffic_stream: "processed/traffic_stream/"
+
+  curated:
+    mobility_weather: "curated/mobility_weather/"
+    marts: "curated/marts/"
+
 weather:
-  latitude: 41.9028
+  api_url: "https://api.open-meteo.com/v1/forecast"
+  latitude: 41.9028        # Rome
   longitude: 12.4964
-  variables:
+  hourly_params:
     - temperature_2m
     - precipitation
     - windspeed_10m
-
-  azure:
-    container_name: "weather-raw"
-    blob_prefix: "weather"
-
-paths:
-  raw_data_weather: "data/raw/weather"
-  raw_data_mobility: "data/raw/mobility_rome_taxi"
+  timezone: "Europe/Rome"
 
 mobility:
+  month_processed: "taxi_february"
   azure:
-    container_name: "data"
-    blob_path: "external/rome_taxi/taxi_february.tar.gz"
-
+    container_name: "climatemobility"
+    blob_path: "raw/mobility/external/taxi_february.tar.gz"
   local:
-    external_dir: "data/external/rome_taxi"
+    external_dir: "data/raw/mobility/external/"
     archive_name: "taxi_february.tar.gz"
-    extracted_subdir: "extracted"
+    extracted_subdir: "txt/"
+
+streaming:
+  kafka:
+    bootstrap_servers: "localhost:9092"
+    topic: "traffic_events"
+    group_id: "mobility_pipeline"
