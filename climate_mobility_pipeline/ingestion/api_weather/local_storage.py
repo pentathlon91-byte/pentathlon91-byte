@@ -1,12 +1,12 @@
-import os
 import json
 import logging
+from pathlib import Path
 from datetime import datetime, timezone
 
 # Module-level logger for consistent, structured logging
 logger = logging.getLogger(__name__)
 
-def save_to_local(data, output_dir):
+def save_to_local(data: dict, output_dir: Path) -> Path:
     """
     Save weather data to a timestamped JSON file in the local raw-data directory.
 
@@ -14,12 +14,12 @@ def save_to_local(data, output_dir):
     ----------
     data : dict
         Weather data returned by the API client.
-    output_dir : str
+    output_dir : Path
         Directory where the JSON file will be written.
 
     Returns
     -------
-    str
+    Path
         Full path to the saved JSON file.
 
     Notes
@@ -29,17 +29,21 @@ def save_to_local(data, output_dir):
     - Filenames include a UTC timestamp to ensure uniqueness.
     """
 
-    # Ensure the output directory exists (create if missing)
-    os.makedirs(output_dir, exist_ok=True)
+    # Ensure the output directory exists
+    output_dir.mkdir(parents=True, exist_ok=True)
 
-    # Generate a timestamped filename for traceability and uniqueness
+    # Timestamped filename for traceability
     timestamp = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
     filename = f"weather_{timestamp}.json"
-    filepath = os.path.join(output_dir, filename)
+    filepath = output_dir / filename
 
-    # Write the JSON file with pretty formatting
-    with open(filepath, "w") as f:
-        json.dump(data, f, indent=2)
+    try:
+        with open(filepath, "w") as f:
+            json.dump(data, f, indent=2)
 
-    logger.info(f"Saved weather data locally at {filepath}")
-    return filepath
+        logger.info("Saved weather data locally at %s", filepath)
+        return filepath
+
+    except Exception:
+        logger.exception("Failed to save weather data locally at %s", filepath)
+        raise
