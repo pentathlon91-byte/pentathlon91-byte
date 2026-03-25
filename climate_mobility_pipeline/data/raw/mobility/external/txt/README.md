@@ -3,7 +3,7 @@
 
 This directory contains the **raw TXT mobility log** extracted from the original `taxi_february.tar.gz` archive of the [CRAWDAD roma/taxi dataset](https://ieee-dataport.org/open-access/crawdad-romataxi). This file represents the **first fully expanded form** of the mobility data after decompression. It is used as the direct input for the parsing and cleaning stage of the batch ingestion pipeline.
 
-To keep the repository lightweight and GitHub-friendly, the raw TXT mobility log is stored in **Azure Blob Storage** and accessed automatically during execution.
+To keep the repository lightweight and GitHub-friendly, the raw TXT mobility log is stored in **Azure Blob Storage**.
 
 ---
 
