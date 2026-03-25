@@ -1,4 +1,4 @@
-# 📁 `data/processed/mobility/`
+# 📁 `processed/mobility/`
 ### *Analytics‑ready mobility data (Parquet format)*
 
 This directory contains the **cleaned**, **parsed**, and **structured mobility dataset** produced by the batch ingestion pipeline. It represents the **final stage** of processing for the historical mobility log and is the version used by downstream analytics, dbt models, and weather‑mobility integrations.
