@@ -49,7 +49,7 @@ processed/mobility/YYYY/MM/DD/
 
 To keep the repository lightweight and GitHub-friendly, only **simplified sample data** is included in the `data/` directory.
 
-The full raw datasets used by the pipeline — including weather JSON files, mobility `.tar.gz` archives, extracted TXT logs, and processed Parquet outputs — are stored in **Azure Blob Storage** and accessed automatically during execution.
+The full raw datasets used by the pipeline, including weather JSON files, mobility `.tar.gz` archives, extracted TXT logs, and processed Parquet outputs, are stored in **Azure Blob Storage** and accessed automatically during execution.
 
 This ensures the project remains easy to clone and run locally while still demonstrating a realistic, cloud-scale data engineering workflow.
 
