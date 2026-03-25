@@ -1,4 +1,4 @@
-# 📁 `data/raw/weather/`
+# 📁 `raw/weather/`
 ### *Raw hourly weather data ingested from the Open‑Meteo API*
 
 This directory contains the **unprocessed JSON weather files** retrieved directly from the Open‑Meteo API as part of the weather ingestion pipeline. These files represent the **source‑of‑truth raw climate data** used throughout the project.
