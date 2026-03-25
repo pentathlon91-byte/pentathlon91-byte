@@ -34,7 +34,7 @@ The traces are **sorted by timestamp** and represent positions collected roughly
 187;2014-02-01 00:00:01.148457+01;POINT(41.9285433333333 12.4690366666667)
 297;2014-02-01 00:00:01.220066+01;POINT(41.8910686119733 12.4927045625339)
 ```
-This raw format is later parsed, cleaned, and converted into a structured Parquet file in the `data/processed/mobility/` directory.
+This raw format is later parsed, cleaned, and converted into a structured Parquet file in the `processed/mobility/` directory.
 
 ---
 
@@ -45,8 +45,7 @@ This raw format is later parsed, cleaned, and converted into a structured Parque
 
 ### **Downstream consumers**
 - TXT extraction and parsing pipeline
-- structured Parquet mobility data in `data/processed/mobility/`
+- structured Parquet mobility data (`processed/mobility/`)
 - dbt staging models
 - weather‑mobility joined datasets
-- curated marts
-- exploratory dashboards
+- curated marts and dashboards
