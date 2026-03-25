@@ -5,7 +5,7 @@
 This project implements a **multi-source**, **production-style data pipeline** that ingests, stores, and processes climate and mobility data using modern data engineering patterns. It integrates:
 
 - **API ingestion** (Open-Meteo weather)
-- **Batch ingestion** (historical mobility archives)
+- **Batch ingestion** (historical mobility archive)
 - **Streaming ingestion** (Kafka traffic events)
 - **Cloud storage** (Azure Blob Storage)
 - **Orchestration-ready design** (Airflow)
@@ -29,7 +29,7 @@ raw/weather/YYYY/MM/DD/
 ```
 
 ### **2. Batch Mobility Data (Taxi GPS Pings)**
-- Historical `.tar.gz` archives containing TXT mobility logs
+- Historical `.tar.gz` archive containing a TXT mobility log
 - Downloaded from Azure, extracted, parsed, and converted to Parquet
 - Stored in Azure under:
 ```markdown
@@ -49,7 +49,7 @@ processed/mobility/YYYY/MM/DD/
 
 To keep the repository lightweight and GitHub-friendly, only **simplified sample data** is included in the `data/` directory.
 
-The full raw datasets used by the pipeline, including weather JSON files, mobility `.tar.gz` archives, extracted TXT logs, and processed Parquet outputs, are stored in **Azure Blob Storage** and accessed automatically during execution.
+The full raw datasets used by the pipeline, including weather JSON files, mobility `.tar.gz` archive, extracted TXT log, and processed Parquet output, are stored in **Azure Blob Storage** and accessed automatically during execution.
 
 This ensures the project remains easy to clone and run locally while still demonstrating a realistic, cloud-scale data engineering workflow.
 
@@ -102,7 +102,7 @@ curated/
 
   - Download archive from Azure
   - Extract TXT
-  - Parse mobility logs
+  - Parse mobility log
   - Write Parquet
   - Upload raw + processed data to Azure
 
