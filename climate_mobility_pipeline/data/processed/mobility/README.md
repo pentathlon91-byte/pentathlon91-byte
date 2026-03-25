@@ -1,15 +1,15 @@
 # 📁 `data/processed/mobility/`
 ### *Analytics‑ready mobility data (Parquet format)*
 
-This directory contains the **cleaned, parsed, and structured mobility dataset** produced by the batch ingestion pipeline. It represents the **final stage** of processing for historical mobility logs and is the version used by downstream analytics, dbt models, and weather‑mobility integrations.
+This directory contains the **cleaned**, **parsed**, and **structured mobility dataset** produced by the batch ingestion pipeline. It represents the **final stage** of processing for the historical mobility log and is the version used by downstream analytics, dbt models, and weather‑mobility integrations.
 
-To keep the repository lightweight and GitHub-friendly, all Parquet files are stored in **Azure Blob Storage**.
+To keep the repository lightweight and GitHub-friendly, the Parquet file is stored in **Azure Blob Storage**.
 
 ---
 
 ## 🗂️ File Contents
 
-Each Parquet file contains the structured output of the TXT mobility logs extracted from the original `.tar.gz` archives.
+The Parquet file contains the structured output of the TXT mobility log extracted from the original `.tar.gz` archive.
 
 ### **Core fields**
 - `vehicle_id` — unique vehicle identifier  
@@ -17,7 +17,7 @@ Each Parquet file contains the structured output of the TXT mobility logs extrac
 - `latitude`, `longitude` — cleaned GPS coordinates
 
 ### **Schema and head of the processed mobility data**
-Below is a preview of the structured mobility records after parsing the raw TXT logs and before writing them to Parquet.
+Below is a preview of the structured mobility records after parsing the raw TXT log and before writing it to Parquet.
 ```markdown
    vehicle_id                        timestamp   latitude  longitude
 0         156 2014-02-01 00:00:00.739166+01:00  41.883672  12.487778
@@ -44,12 +44,11 @@ memory usage: 665.8 MB
 ## 🔄 Upstream & Downstream Flow
 
 ### **Upstream sources**
-- `.tar.gz` archives stored in Azure (`raw/mobility/external/`)
-- extracted TXT logs (`raw/mobility/external/txt/`)
+- `.tar.gz` archive stored in Azure (`raw/mobility/external/`)
+- extracted TXT log (`raw/mobility/external/txt/`)
 - parsed rows from the batch ingestion pipeline
 
 ### **Downstream consumers**
 - dbt staging models
 - weather‑mobility joined datasets
-- curated marts
-- exploratory dashboards
+- curated marts and dashboards
