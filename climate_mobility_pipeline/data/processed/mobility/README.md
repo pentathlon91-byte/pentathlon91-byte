@@ -12,12 +12,12 @@ To keep the repository lightweight and GitHub-friendly, the Parquet file is stor
 The Parquet file contains the structured output of the TXT mobility log extracted from the original `.tar.gz` archive.
 
 ### **Core fields**
-- `vehicle_id` — unique vehicle identifier  
-- `timestamp` — event timestamp  
-- `latitude`, `longitude` — cleaned GPS coordinates
+- `vehicle_id`: unique vehicle identifier  
+- `timestamp`: event timestamp  
+- `latitude`, `longitude`: cleaned GPS coordinates
 
 ### **Schema and head of the processed mobility data**
-Below is a preview of the structured mobility records after parsing the raw TXT log and before writing it to Parquet.
+Below is a preview of the structured mobility records after parsing the raw TXT log and before writing it to Parquet:
 ```markdown
    vehicle_id                        timestamp   latitude  longitude
 0         156 2014-02-01 00:00:00.739166+01:00  41.883672  12.487778
