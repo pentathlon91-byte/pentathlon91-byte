@@ -9,34 +9,33 @@ To keep the repository lightweight and GitHub-friendly, the raw TXT mobility log
 
 ## 🗂️ File Contents
 
-The logs follow a consistent semicolon‑separated structure:
+The log follows a consistent semicolon‑separated structure:
 ```markdown
 DRIVER_ID;TIMESTAMP;POSITION
 ```
-Where:
-- `DRIVER_ID` — anonymized integer identifier  
-- `TIMESTAMP` — precise event timestamp with timezone  
-- `POSITION` — geographic point in WKT format, e.g., `POINT(41.900275 12.462746)`  
+where:
+- `DRIVER_ID`: anonymized integer identifier  
+- `TIMESTAMP`: precise event timestamp with timezone  
+- `POSITION`: geographic point in WKT format, e.g., `POINT(41.900275 12.462746)`  
 
-### **Example of extracted TXT record**
+### **Example of extracted TXT records**
 ```markdown
 156;2014-02-01 00:00:00.739166+01;POINT(41.8836718276551 12.4877775603346)
 187;2014-02-01 00:00:01.148457+01;POINT(41.9285433333333 12.4690366666667)
 297;2014-02-01 00:00:01.220066+01;POINT(41.8910686119733 12.4927045625339)
 ```
-These lines are read directly by the parsing module, which converts them into structured rows before writing Parquet files in the `data/processed/mobility/` directory.
+These lines are read directly by the parsing module, which converts them into structured rows before writing the Parquet file in the `processed/mobility/` directory.
 
 ---
 
 ## 🔄 Upstream & Downstream Flow
 
 ### **Upstream sources**
-- `taxi_february.tar.gz` archive from the CRAWDAD roma/taxi dataset stored in `data/raw/mobility/external/`
+- `taxi_february.tar.gz` archive from the CRAWDAD roma/taxi dataset stored in `raw/mobility/external/`
 
 ### **Downstream consumers**
 - parsing and cleaning scripts
-- structured Parquet mobility data in `data/processed/mobility/`
+- structured Parquet mobility data (`processed/mobility/`)
 - dbt staging models
 - weather‑mobility joined datasets
-- curated marts
-- exploratory dashboards
+- curated marts and dashboards
