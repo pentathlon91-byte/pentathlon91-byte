@@ -1,12 +1,42 @@
+# 📁 `data/raw/mobility/external/txt/`
+### *Extracted TXT mobility log from the CRAWDAD roma/taxi dataset*
+
+This directory contains the **raw TXT mobility log** extracted from the original `taxi_february.tar.gz` archive of the [CRAWDAD roma/taxi dataset](https://ieee-dataport.org/open-access/crawdad-romataxi). This file represents the **first fully expanded form** of the mobility data after decompression. It is used as the direct input for the parsing and cleaning stage of the batch ingestion pipeline.
+
+To keep the repository lightweight and GitHub-friendly, the raw TXT mobility log is stored in **Azure Blob Storage** and accessed automatically during execution.
+
+---
+
+## 🗂️ File Contents
+
+The logs follow a consistent semicolon‑separated structure:
+```markdown
+DRIVER_ID;TIMESTAMP;POSITION
+```
+Where:
+- `DRIVER_ID` — anonymized integer identifier  
+- `TIMESTAMP` — precise event timestamp with timezone  
+- `POSITION` — geographic point in WKT format, e.g., `POINT(41.900275 12.462746)`  
+
+### **Example of extracted TXT record**
 ```markdown
 156;2014-02-01 00:00:00.739166+01;POINT(41.8836718276551 12.4877775603346)
 187;2014-02-01 00:00:01.148457+01;POINT(41.9285433333333 12.4690366666667)
 297;2014-02-01 00:00:01.220066+01;POINT(41.8910686119733 12.4927045625339)
-89;2014-02-01 00:00:01.470854+01;POINT(41.7931766914244 12.4321219603157)
-79;2014-02-01 00:00:01.631136+01;POINT(41.90027472 12.46274618)
-191;2014-02-01 00:00:02.048546+01;POINT(41.8523047579646 12.5774065771898)
-343;2014-02-01 00:00:02.647839+01;POINT(41.8921718255185 12.4696996165151)
-341;2014-02-01 00:00:02.709888+01;POINT(41.9102125627332 12.4770004336041)
-260;2014-02-01 00:00:03.458195+01;POINT(41.8658208551143 12.4655221109313)
-59;2014-02-01 00:00:03.707117+01;POINT(41.8967831636848 12.4821987021152)
 ```
+These lines are read directly by the parsing module, which converts them into structured rows before writing Parquet files in the `data/processed/mobility/` directory.
+
+---
+
+## 🔄 Upstream & Downstream Flow
+
+### **Upstream sources**
+- `taxi_february.tar.gz` archive from the CRAWDAD roma/taxi dataset stored in `data/raw/mobility/external/`
+
+### **Downstream consumers**
+- parsing and cleaning scripts
+- structured Parquet mobility data in `data/processed/mobility/`
+- dbt staging models
+- weather‑mobility joined datasets
+- curated marts
+- exploratory dashboards
