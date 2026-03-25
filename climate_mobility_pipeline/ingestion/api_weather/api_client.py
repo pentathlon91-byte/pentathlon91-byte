@@ -4,9 +4,16 @@ import logging
 # Module-level logger for consistent, structured logging
 logger = logging.getLogger(__name__)
 
-def fetch_weather_data(latitude, longitude, variables):
+def fetch_weather_data(
+    latitude,
+    longitude,
+    variables,
+    start_date,
+    end_date,
+    timezone
+):
     """
-    Fetch hourly weather data from the Open-Meteo API.
+    Fetch hourly weather data from the Open-Meteo API for a specific date range.
 
     Parameters
     ----------
@@ -16,31 +23,34 @@ def fetch_weather_data(latitude, longitude, variables):
         Geographic longitude of the location.
     variables : List[str]
         List of weather variables to request (e.g. ["temperature_2m", "windspeed_10m"]).
+    start_date : str
+        Start date in YYYY-MM-DD format.
+    end_date : str
+        End date in YYYY-MM-DD format.
+    timezone: str
+        Timezone string (e.g., "Europe/Rome")
 
     Returns
     -------
     dict
         Parsed JSON response containing hourly weather data.
-
-    Notes
-    -----
-    This function is responsible ONLY for making the API request.
-    It does not handle local storage, Azure upload, or configuration.
     """
     
     # Base endpoint for the Open-Meteo forecast API
-    base_url = "https://api.open-meteo.com/v1/forecast"
+    base_url = "https://archive-api.open-meteo.com/v1/archive"
 
     # Query parameters for the API request
     params = {
         "latitude": latitude,
         "longitude": longitude,
-        "hourly": ",".join(variables),   # API expects comma-separated string
-        "timezone": "auto"               # Automatically adjusts timestamps to local timezone
+        "hourly": ",".join(variables),
+        "timezone": timezone,
+        "start_date": start_date,
+        "end_date": end_date
     }
 
     try:
-        logger.info("Requesting weather data from Open-Meteo API...")
+        logger.info(f"Requesting weather data for {start_date} from Open-Meteo API...")
 
         # Perform the HTTP GET request with a timeout for safety
         response = requests.get(base_url, params=params, timeout=10)
