@@ -58,5 +58,4 @@ Below is a simplified excerpt illustrating the structure of the JSON files store
 ### **Downstream consumers**
 - dbt staging models
 - weather‑mobility joined datasets
-- curated marts
-- exploratory dashboards
+- curated marts and dashboards
