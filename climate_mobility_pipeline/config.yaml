@@ -32,13 +32,15 @@ paths:
 
 weather:
   api_url: "https://api.open-meteo.com/v1/forecast"
-  latitude: 41.9028        # Rome
+  latitude: 41.9028
   longitude: 12.4964
   hourly_params:
     - temperature_2m
     - precipitation
     - windspeed_10m
   timezone: "Europe/Rome"
+  start_date: "2014-02-01"
+  end_date: "2014-03-02"
 
 mobility:
   month_processed: "taxi_february"
