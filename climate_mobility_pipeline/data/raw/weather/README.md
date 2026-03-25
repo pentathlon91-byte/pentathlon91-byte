@@ -3,7 +3,7 @@
 
 This directory contains the **unprocessed JSON weather files** retrieved directly from the Open‑Meteo API as part of the weather ingestion pipeline. These files represent the **source‑of‑truth raw climate data** used throughout the project.
 
-The data in this folder is intentionally kept in its **original API format**, ensuring full reproducibility and traceability for downstream transformations. To keep the repository lightweight and GitHub-friendly, only **a few sample JSON weather files** are included in the directory.
+The data in this folder is intentionally kept in its **original API format**, ensuring full reproducibility and traceability for downstream transformations. To keep the repository lightweight and GitHub-friendly, all unprocessed JSON weather files are stored in **Azure Blob Storage**, while only **a few sample files** are included in the directory.
 
 ---
 
@@ -12,14 +12,14 @@ The data in this folder is intentionally kept in its **original API format**, en
 Each file corresponds to a single API call for a specific date and location.
 
 Typical contents include:
-- `time` — hourly timestamp in ISO format  
-- `temperature_2m` — hourly temperature  
-- `precipitation` — hourly precipitation  
-- `windspeed_10m` — hourly wind speed
+- `time`: hourly timestamp in ISO format  
+- `temperature_2m`: hourly temperature  
+- `precipitation`: hourly precipitation  
+- `windspeed_10m`: hourly wind speed
 - metadata such as latitude, longitude, timezone, and elevation
 
 ### **Example structure of a raw weather file**
-Below is a simplified excerpt illustrating the structure of the JSON files stored in this directory.
+Below is a simplified excerpt illustrating the structure of the JSON files stored in this directory:
 ```json
 {
   "latitude": 41.875,
