@@ -44,7 +44,7 @@ memory usage: 665.8 MB
 ### **Upstream sources**
 - `.tar.gz` archives stored in Azure (`raw/mobility/external/`)
 - extracted TXT logs (`raw/mobility/external/txt/`)
-- parsed and rows from the batch ingestion pipeline
+- parsed rows from the batch ingestion pipeline
 
 ### **Downstream consumers**
 - dbt staging models
