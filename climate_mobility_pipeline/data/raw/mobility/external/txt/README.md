@@ -1,4 +1,4 @@
-# 📁 `data/raw/mobility/external/txt/`
+# 📁 `raw/mobility/external/txt/`
 ### *Extracted TXT mobility log from the CRAWDAD roma/taxi dataset*
 
 This directory contains the **raw TXT mobility log** extracted from the original `taxi_february.tar.gz` archive of the [CRAWDAD roma/taxi dataset](https://ieee-dataport.org/open-access/crawdad-romataxi). This file represents the **first fully expanded form** of the mobility data after decompression. It is used as the direct input for the parsing and cleaning stage of the batch ingestion pipeline.
