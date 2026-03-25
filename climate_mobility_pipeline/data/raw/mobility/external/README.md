@@ -1,4 +1,4 @@
-# 📁 `data/raw/mobility/external/`
+# 📁 `raw/mobility/external/`
 ### *Raw GPS mobility traces from the CRAWDAD roma/taxi dataset*
 
 This directory contains the **original**, **unprocessed mobility traces** from the [CRAWDAD roma/taxi dataset](https://ieee-dataport.org/open-access/crawdad-romataxi), a month‑long collection of GPS positions from approximately 320 taxi cabs operating in Rome. This file represents the **source‑of‑truth raw mobility data** used in the batch ingestion pipeline and is stored exactly as provided by the dataset authors.
