@@ -3,6 +3,8 @@
 
 This directory contains the **cleaned, parsed, and structured mobility dataset** produced by the batch ingestion pipeline. It represents the **final stage** of processing for historical mobility logs and is the version used by downstream analytics, dbt models, and weather‑mobility integrations.
 
+To keep the repository lightweight and GitHub-friendly, all Parquet files are stored in **Azure Blob Storage** and accessed automatically during execution.
+
 ---
 
 ## 🗂️ File Contents
