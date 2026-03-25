@@ -6,16 +6,18 @@ from datetime import datetime, timezone
 # Module-level logger for consistent, structured logging
 logger = logging.getLogger(__name__)
 
-def save_to_local(data: dict, output_dir: Path) -> Path:
+def save_to_local(data: dict, base_output_dir: Path, target_date) -> Path:
     """
-    Save weather data to a timestamped JSON file in the local raw-data directory.
+    Save weather data to a daily-partitioned JSON file.
 
     Parameters
     ----------
     data : dict
         Weather data returned by the API client.
-    output_dir : Path
-        Directory where the JSON file will be written.
+    base_output_dir : Path
+        Base directory for raw weather data (e.g., data/raw/weather/).
+    target_date : datetime.date
+        The date for which the weather data was fetched.
 
     Returns
     -------
@@ -24,17 +26,20 @@ def save_to_local(data: dict, output_dir: Path) -> Path:
 
     Notes
     -----
-    - This function is responsible ONLY for local persistence.
-    - It does not handle API calls, Azure uploads, or configuration.
-    - Filenames include a UTC timestamp to ensure uniqueness.
+    - Creates a directory structure YYYY/MM/DD under base_output_dir.
+    - Saves a deterministic filename: weather_YYYY-MM-DD.json.
     """
 
-    # Ensure the output directory exists
+    # Build partitioned directory: YYYY/MM/DD
+    year = target_date.strftime("%Y")
+    month = target_date.strftime("%m")
+    day = target_date.strftime("%d")
+
+    output_dir = base_output_dir / year / month / day
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    # Timestamped filename for traceability
-    timestamp = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
-    filename = f"weather_{timestamp}.json"
+    # Deterministic filename for the day
+    filename = f"weather_{target_date.strftime('%Y-%m-%d')}.json"
     filepath = output_dir / filename
 
     try:
