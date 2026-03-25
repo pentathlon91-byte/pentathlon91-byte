@@ -30,6 +30,8 @@ The traces are **sorted by timestamp** and represent positions collected roughly
 ### **Example of raw TXT record**
 ```markdown
 156;2014-02-01 00:00:00.739166+01;POINT(41.8836718276551 12.4877775603346)
+187;2014-02-01 00:00:01.148457+01;POINT(41.9285433333333 12.4690366666667)
+297;2014-02-01 00:00:01.220066+01;POINT(41.8910686119733 12.4927045625339)
 ```
 This raw format is later parsed, cleaned, and converted into structured Parquet files in the `data/processed/mobility/` directory.
 
