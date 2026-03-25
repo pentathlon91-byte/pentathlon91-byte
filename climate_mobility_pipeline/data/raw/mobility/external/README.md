@@ -18,7 +18,7 @@ DRIVER_ID;TIMESTAMP;POSITION
 Where:
 - `DRIVER_ID` — anonymized integer identifier for each taxi  
 - `TIMESTAMP` — date and time of the GPS ping  
-- `POSITION` — geographic point formatted as `POINT(latitude, longitude`  
+- `POSITION` — geographic point formatted as `POINT(latitude, longitude)`  
 
 The traces are **sorted by timestamp** and represent positions collected roughly **every 7 seconds**, filtered to exclude low‑accuracy GPS readings.
 
