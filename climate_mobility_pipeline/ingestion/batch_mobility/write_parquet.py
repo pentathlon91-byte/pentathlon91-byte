@@ -2,10 +2,9 @@ import logging
 from pathlib import Path
 import pandas as pd
 
-# Module-level logger for consistent, structured logging
 logger = logging.getLogger(__name__)
 
-def write_parquet(df: pd.DataFrame, output_dir: Path, filename: str = "mobility.parquet") -> Path:
+def write_parquet(df: pd.DataFrame, output_dir: Path, filename: str) -> Path:
     """
     Write a mobility DataFrame to a Parquet file inside a target directory.
 
@@ -15,23 +14,17 @@ def write_parquet(df: pd.DataFrame, output_dir: Path, filename: str = "mobility.
         The structured mobility dataset produced by the parser.
     output_dir : Path
         Directory where the Parquet file will be written.
-    filename : str, optional
-        Name of the Parquet file to create. Defaults to "mobility.parquet".
+    filename : str
+        Name of the Parquet file to create.
 
     Returns
     -------
     Path
         Full path to the written Parquet file.
-
-    Notes
-    -----
-    - This function performs ONLY the persistence step.
-    - All naming conventions and Azure uploads are handled by the orchestrator.
     """
 
     logger.info("Writing DataFrame to Parquet: %s", output_dir)
 
-    # Ensure the output directory exists
     output_dir.mkdir(parents=True, exist_ok=True)
 
     output_path = output_dir / filename

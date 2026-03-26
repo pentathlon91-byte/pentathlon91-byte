@@ -2,7 +2,6 @@ import logging
 from pathlib import Path
 from azure.storage.blob import BlobServiceClient, ContentSettings
 
-# Module-level logger for consistent, structured logging
 logger = logging.getLogger(__name__)
 
 def upload_to_azure_blob(
@@ -24,14 +23,9 @@ def upload_to_azure_blob(
     container_name : str
         Name of the Azure Blob container.
     blob_path : str
-        Path inside the container (e.g. "raw/mobility/external/2026/03/19/file.tar.gz").
+        Path inside the container.
     content_type : str, optional
         MIME type for the uploaded file. If None, inferred from extension.
-
-    Notes
-    -----
-    - This function only uploads a file.
-    - It does not handle local storage, parsing, or path generation.
     """
 
     try:
@@ -40,13 +34,11 @@ def upload_to_azure_blob(
         blob_service_client = BlobServiceClient.from_connection_string(connection_string)
         container_client = blob_service_client.get_container_client(container_name)
 
-        # Ensure container exists
         try:
             container_client.create_container()
         except Exception:
-            pass  # container already exists
+            pass
 
-        # Infer content type if not provided
         if content_type is None:
             suffix = local_path.suffix.lower()
 

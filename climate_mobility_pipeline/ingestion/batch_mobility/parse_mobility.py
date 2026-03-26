@@ -3,7 +3,6 @@ from pathlib import Path
 from datetime import datetime
 import pandas as pd
 
-# Module-level logger for consistent, structured logging
 logger = logging.getLogger(__name__)
 
 def parse_mobility_file(txt_path: Path) -> pd.DataFrame:
@@ -23,12 +22,6 @@ def parse_mobility_file(txt_path: Path) -> pd.DataFrame:
         - timestamp  : datetime64[ns, tz]
         - latitude   : float
         - longitude  : float
-
-    Notes
-    -----
-    - This function performs ONLY parsing and type conversion.
-    - It assumes each line follows the format:
-          vehicle_id ; timestamp ; POINT(lat lon)
     """
 
     logger.info("Parsing mobility TXT file: %s", txt_path)
@@ -41,12 +34,11 @@ def parse_mobility_file(txt_path: Path) -> pd.DataFrame:
                 line = line.strip()
 
                 if not line:
-                    continue  # skip empty lines
+                    continue
 
                 try:
                     vehicle_id, ts, point = line.split(";")
 
-                    # Clean POINT(lat lon)
                     point = point.replace("POINT(", "").replace(")", "")
                     lat_str, lon_str = point.split()
 

@@ -2,7 +2,6 @@ import logging
 from pathlib import Path
 from azure.storage.blob import BlobServiceClient
 
-# Module-level logger for consistent, structured logging
 logger = logging.getLogger(__name__)
 
 def download_archive_from_azure(
@@ -21,8 +20,7 @@ def download_archive_from_azure(
     container_name : str
         Name of the Azure container.
     blob_path : str
-        Path of the blob inside the container
-        (e.g. "raw/mobility/external/2026/03/19/archive.tar.gz").
+        Path of the blob inside the container.
     local_path : Path
         Local filesystem path where the file will be saved.
 
@@ -42,7 +40,6 @@ def download_archive_from_azure(
         blob_path,
     )
 
-    # Connect to Azure Blob Storage
     try:
         blob_service = BlobServiceClient.from_connection_string(connection_string)
         container = blob_service.get_container_client(container_name)
@@ -50,10 +47,8 @@ def download_archive_from_azure(
         logger.exception("Failed to connect to Azure Blob Storage.")
         raise
 
-    # Ensure local directory exists
     local_path.parent.mkdir(parents=True, exist_ok=True)
 
-    # Download blob content
     try:
         logger.info("Downloading blob to local path: %s", local_path)
         with open(local_path, "wb") as f:
