@@ -10,33 +10,45 @@ from climate_mobility_pipeline.ingestion.api_weather.api_client import fetch_wea
 from climate_mobility_pipeline.ingestion.api_weather.local_storage import save_to_local
 from climate_mobility_pipeline.ingestion.api_weather.azure_upload import upload_to_azure_blob
 
-# ---------------------------------------------------------
 # Logging Configuration
-# ---------------------------------------------------------
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s | %(levelname)s | %(message)s"
 )
 logger = logging.getLogger(__name__)
 
-# ---------------------------------------------------------
 # Path Setup
-# ---------------------------------------------------------
 BASE_DIR = Path(__file__).resolve().parent
-PROJECT_ROOT = BASE_DIR.parents[1]   # climate_mobility_pipeline/
+PROJECT_ROOT = BASE_DIR.parents[1]
 
 def ingest_single_day(target_date, config, local_raw_weather, azure_conn, container_name, azure_raw_weather_root):
-    """Fetch, store, and upload weather data for a single historical day."""
+    """Fetch, store, and upload weather data for a single historical day.
+    
+    Parameters
+    ----------
+    target_date : date
+        The specific date for which to fetch weather data.
+    config : dict
+        Configuration dictionary loaded from config.yaml.
+    local_raw_weather : Path
+        Base directory for local raw weather data storage.
+    azure_conn : str
+        Azure storage connection string.
+    container_name : str
+        Name of the Azure storage container.
+    azure_raw_weather_root : str
+        Root path for raw weather data in Azure.
+    """
 
     lat = config["weather"]["latitude"]
     lon = config["weather"]["longitude"]
     variables = config["weather"]["hourly_params"]
     timezone_str = config["weather"]["timezone"]
-
+    
     date_str = target_date.strftime("%Y-%m-%d")
+
     logger.info(f"Fetching historical weather for {date_str}")
 
-    # Fetch one day of weather (start_date == end_date)
     data = fetch_weather_data(
         latitude=lat,
         longitude=lon,
@@ -46,14 +58,12 @@ def ingest_single_day(target_date, config, local_raw_weather, azure_conn, contai
         timezone=timezone_str
     )
 
-    # Save locally into YYYY/MM/DD/weather_YYYY-MM-DD.json
     local_file = save_to_local(
         data=data,
         base_output_dir=local_raw_weather,
         target_date=target_date
     )
 
-    # Upload to Azure with matching partitioning
     if azure_conn:
         date_path = target_date.strftime("%Y/%m/%d")
         blob_path = (
@@ -75,11 +85,7 @@ def ingest_single_day(target_date, config, local_raw_weather, azure_conn, contai
         logger.warning("Azure connection string not found. Skipping upload.")
 
 def main():
-    """Historical weather ingestion, partitioned by day."""
-
-    # -----------------------------
     # Load configuration
-    # -----------------------------
     config = load_config(str(PROJECT_ROOT))
 
     # Local raw weather directory
@@ -108,6 +114,7 @@ def main():
 
     logger.info(f"Starting historical weather ingestion from {start_date} to {end_date}")
 
+    # Iterate through each date and ingest data
     current = start_date
     while current <= end_date:
         ingest_single_day(

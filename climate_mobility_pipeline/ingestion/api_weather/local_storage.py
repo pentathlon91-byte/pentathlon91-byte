@@ -3,7 +3,6 @@ import logging
 from pathlib import Path
 from datetime import datetime, timezone
 
-# Module-level logger for consistent, structured logging
 logger = logging.getLogger(__name__)
 
 def save_to_local(data: dict, base_output_dir: Path, target_date) -> Path:
@@ -15,7 +14,7 @@ def save_to_local(data: dict, base_output_dir: Path, target_date) -> Path:
     data : dict
         Weather data returned by the API client.
     base_output_dir : Path
-        Base directory for raw weather data (e.g., data/raw/weather/).
+        Base directory for raw weather data.
     target_date : datetime.date
         The date for which the weather data was fetched.
 
@@ -23,14 +22,8 @@ def save_to_local(data: dict, base_output_dir: Path, target_date) -> Path:
     -------
     Path
         Full path to the saved JSON file.
-
-    Notes
-    -----
-    - Creates a directory structure YYYY/MM/DD under base_output_dir.
-    - Saves a deterministic filename: weather_YYYY-MM-DD.json.
     """
 
-    # Build partitioned directory: YYYY/MM/DD
     year = target_date.strftime("%Y")
     month = target_date.strftime("%m")
     day = target_date.strftime("%d")
@@ -38,7 +31,6 @@ def save_to_local(data: dict, base_output_dir: Path, target_date) -> Path:
     output_dir = base_output_dir / year / month / day
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    # Deterministic filename for the day
     filename = f"weather_{target_date.strftime('%Y-%m-%d')}.json"
     filepath = output_dir / filename
 
