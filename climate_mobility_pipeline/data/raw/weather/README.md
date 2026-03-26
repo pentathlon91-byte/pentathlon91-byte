@@ -24,9 +24,9 @@ Each JSON file contains the hourly historical weather observations for a specifi
 Below is a simplified excerpt illustrating the structure of the JSON files stored in this directory:
 ```json
 {
-  "latitude": 41.875,
-  "longitude": 12.5,
-  "generationtime_ms": 0.08797645568847656,
+  "latitude": 41.862915,
+  "longitude": 12.539912,
+  "generationtime_ms": 2.4133920669555664,
   "utc_offset_seconds": 3600,
   "timezone": "Europe/Rome",
   "timezone_abbreviation": "GMT+1",
@@ -39,13 +39,13 @@ Below is a simplified excerpt illustrating the structure of the JSON files store
   },
   "hourly": {
     "time": [
-      "2026-03-19T00:00",
-      "2026-03-19T01:00",
-      "2026-03-19T02:00"
+      "2014-02-01T00:00",
+      "2014-02-01T01:00",
+      "2014-02-01T02:00"
     ],
-    "temperature_2m": [8.3, 7.9, 7.3],
-    "precipitation": [0.0, 0.0, 0.0],
-    "windspeed_10m": [1.9, 1.8, 1.9]
+    "temperature_2m": [11.9, 12.1, 12.1],
+    "precipitation": [1.6, 1.9, 1.7],
+    "windspeed_10m": [8.0, 8.7, 9.1]
   }
 }
 ```
