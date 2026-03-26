@@ -1,17 +1,19 @@
 # 📁 `raw/weather/`
-### *Raw hourly weather data ingested from the Open‑Meteo API*
+### *Daily‑partitioned historical weather data ingested from the Open‑Meteo Archive API*
 
-This directory contains the **unprocessed JSON weather files** retrieved directly from the Open‑Meteo API as part of the weather ingestion pipeline. These files represent the **source‑of‑truth raw climate data** used throughout the project.
+This directory contains the **unprocessed JSON weather files** retrieved from the **Open-Meteo Archive API**, representing the historical climate data used in the pipeline. Each file corresponds to a **single day** of weather observations for the Rome area, aligned with the 2014 mobility dataset.
 
-The data in this folder is intentionally kept in its **original API format**, ensuring full reproducibility and traceability for downstream transformations. To keep the repository lightweight and GitHub-friendly, all unprocessed JSON weather files are stored in **Azure Blob Storage**, while only **a few sample files** are included in the directory.
+The data is stored exactly as returned by the API to preserve full reproducibility, auditability, and traceability. To keep the repository lightweight and GitHub-friendly, only a few sample files are included locally; the full dataset is stored in **Azure Blob Storage** under the same partitioned structure.
 
 ---
 
 ## 🗂️ File Contents
 
-Each file corresponds to a single API call for a specific date and location.
-
-Typical contents include:
+Weather data is organized using a date‑based partitioning scheme:
+```markdown
+raw/weather/YYYY/MM/DD/weather_YYYY-MM-DD.json
+```
+Each JSON file contains the hourly historical weather observations for a specific date, including:
 - `time`: hourly timestamp in ISO format  
 - `temperature_2m`: hourly temperature  
 - `precipitation`: hourly precipitation  
