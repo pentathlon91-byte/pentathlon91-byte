@@ -1,5 +1,4 @@
 from pathlib import Path
-from datetime import datetime, timezone
 import logging
 import os
 
@@ -50,13 +49,8 @@ def main():
     azure_raw_txt = paths_cfg["raw"]["mobility_txt"]
     azure_processed = paths_cfg["processed"]["mobility"]
 
-    # Build date-partitioned paths
-    now = datetime.now(timezone.utc)
-    date_path = now.strftime("%Y/%m/%d")
-
     # Azure blob paths
-    blob_raw_txt = f"{azure_raw_txt}{date_path}/"
-    blob_processed = f"{azure_processed}{date_path}/{mobility_cfg['month_processed']}.parquet"
+    blob_processed = f"{azure_processed}/{mobility_cfg['month_processed']}.parquet"
 
     # Download archive from Azure
     logger.info("Downloading mobility archive from Azure...")
@@ -82,7 +76,7 @@ def main():
         local_path=txt_path,
         connection_string=azure_conn,
         container_name=container_name,
-        blob_path=f"{blob_raw_txt}{txt_path.name}",
+        blob_path=f"{azure_raw_txt}{txt_path.name}",
         content_type="text/plain"
     )
 
