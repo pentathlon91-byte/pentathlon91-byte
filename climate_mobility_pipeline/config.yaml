@@ -4,17 +4,11 @@ azure:
   connection_string_env: "AZURE_STORAGE_CONNECTION_STRING"
 
 paths:
-  # -------------------------
-  # Local development paths
-  # -------------------------
   local_base: "data/"
   local_raw: "data/raw/"
   local_processed: "data/processed/"
   local_curated: "data/curated/"
 
-  # -------------------------
-  # Azure data lake layout
-  # -------------------------
   raw:
     weather: "raw/weather/"
     mobility_external: "raw/mobility/external/"
