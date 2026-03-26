@@ -4,7 +4,7 @@
 ## 🚀 Overview
 This project implements a **multi-source**, **production-style data pipeline** that ingests, stores, and processes climate and mobility data using modern data engineering patterns. It integrates:
 
-- **API ingestion** (Open-Meteo weather)
+- **API ingestion** (Open-Meteo weather archive)
 - **Batch ingestion** (historical mobility archive)
 - **Streaming ingestion** (Kafka traffic events)
 - **Cloud storage** (Azure Blob Storage)
@@ -19,7 +19,7 @@ The pipeline is designed to explore real analytical questions, such as:
 
 ## 🌍 Data Sources
 
-### **1. Weather API (Open‑Meteo)**
+### **1. Weather API (Open‑Meteo archive)**
 - Hourly temperature, precipitation, wind speed
 - No API key required
 - Ingested via Python
@@ -33,9 +33,9 @@ raw/weather/YYYY/MM/DD/
 - Downloaded from Azure, extracted, parsed, and converted to Parquet
 - Stored in Azure under:
 ```markdown
-raw/mobility/external/YYYY/MM/DD/
-raw/mobility/txt/YYYY/MM/DD/
-processed/mobility/YYYY/MM/DD/
+raw/mobility/external/
+raw/mobility/txt/
+processed/mobility/
 ```
 
 ### **3. Streaming Traffic Events (Kafka)**
