@@ -7,7 +7,6 @@ from climate_mobility_pipeline.config_loader import load_config
 
 from climate_mobility_pipeline.utils.azure_utils import upload_to_azure_blob
 
-# Worker modules
 from climate_mobility_pipeline.ingestion.api_weather.api_client import fetch_weather_data
 from climate_mobility_pipeline.ingestion.api_weather.local_storage import save_to_local
 
