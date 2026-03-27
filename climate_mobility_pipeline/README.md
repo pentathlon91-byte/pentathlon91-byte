@@ -69,7 +69,7 @@ raw/
   weather/
   mobility/
     external/
-      txt/
+    txt/
   traffic_stream/
 
 processed/
@@ -97,15 +97,7 @@ curated/
 ## 🧪 Current Status
 
 ✔ Weather API ingestion implemented  
-✔ Weather data stored locally + in Azure  
-✔ Batch mobility ingestion fully implemented
-
-  - Download archive from Azure
-  - Extract TXT
-  - Parse mobility log
-  - Write Parquet
-  - Upload raw + processed data to Azure
-
+✔ Batch mobility ingestion implemented  
 ⬜ Kafka streaming pipeline  
 ⬜ Airflow orchestration  
 ⬜ dbt transformations  
@@ -130,16 +122,17 @@ climate_mobility_pipeline/
 
   ingestion/
     api_weather/
-      fetch_weather.py
       api_client.py
+      fetch_weather.py
       local_storage.py
-      azure_upload.py
     batch_mobility/
       load_mobility.py
-      acquisition.py
-      extraction.py
       parse_mobility.py
-      write_parquet.py
+
+  utils/
+    azure_utils.py
+    extract_tar_archive.py
+    write_parquet.py
 
   config_loader.py
   config.yaml
