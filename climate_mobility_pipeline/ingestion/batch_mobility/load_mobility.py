@@ -30,9 +30,8 @@ def main():
     paths_cfg = config["paths"]
 
     # Local paths
-    local_external_dir = PROJECT_ROOT / mobility_cfg["local"]["external_dir"]
-    local_archive_path = local_external_dir / mobility_cfg["local"]["archive_name"]
-    local_extract_dir = local_external_dir / mobility_cfg["local"]["extracted_subdir"]
+    local_archive_path = PROJECT_ROOT / mobility_cfg["local"]["external_dir"] / mobility_cfg["local"]["archive_name"]
+    local_extract_dir = PROJECT_ROOT / mobility_cfg["local"]["extracted_dir"]
 
     local_processed_dir = (
         PROJECT_ROOT

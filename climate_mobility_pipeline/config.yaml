@@ -43,8 +43,8 @@ mobility:
     blob_path: "raw/mobility/external/taxi_february.tar.gz"
   local:
     external_dir: "data/raw/mobility/external/"
+    extracted_dir: "data/raw/mobility/txt/"
     archive_name: "taxi_february.tar.gz"
-    extracted_subdir: "txt/"
 
 streaming:
   kafka:
