@@ -5,10 +5,10 @@ from datetime import datetime, timedelta
 
 from climate_mobility_pipeline.config_loader import load_config
 
-# Worker modules
+from climate_mobility_pipeline.utils.azure_utils import upload_to_azure_blob
+
 from climate_mobility_pipeline.ingestion.api_weather.api_client import fetch_weather_data
 from climate_mobility_pipeline.ingestion.api_weather.local_storage import save_to_local
-from climate_mobility_pipeline.ingestion.api_weather.azure_upload import upload_to_azure_blob
 
 # Logging Configuration
 logging.basicConfig(

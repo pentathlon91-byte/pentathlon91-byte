@@ -6,12 +6,12 @@ logger = logging.getLogger(__name__)
 
 def write_parquet(df: pd.DataFrame, output_dir: Path, filename: str) -> Path:
     """
-    Write a mobility DataFrame to a Parquet file inside a target directory.
+    Write a DataFrame to a Parquet file inside a target directory.
 
     Parameters
     ----------
     df : pandas.DataFrame
-        The structured mobility dataset produced by the parser.
+        The structured DataFrame to be written.
     output_dir : Path
         Directory where the Parquet file will be written.
     filename : str
