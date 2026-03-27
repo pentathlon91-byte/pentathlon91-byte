@@ -4,12 +4,12 @@ import os
 
 from climate_mobility_pipeline.config_loader import load_config
 
-# Worker modules
+from climate_mobility_pipeline.utils.azure_utils import upload_to_azure_blob
+
 from climate_mobility_pipeline.ingestion.batch_mobility.acquisition import download_archive_from_azure
 from climate_mobility_pipeline.ingestion.batch_mobility.extraction import extract_archive
 from climate_mobility_pipeline.ingestion.batch_mobility.parse_mobility import parse_mobility_file
 from climate_mobility_pipeline.ingestion.batch_mobility.write_parquet import write_parquet
-from climate_mobility_pipeline.ingestion.batch_mobility.azure_upload import upload_to_azure_blob
 
 # Logging Configuration
 logging.basicConfig(
