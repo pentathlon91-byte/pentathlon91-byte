@@ -83,7 +83,7 @@ curated/
 ```
 
 ### **Orchestration Layer**
-- Airflow DAG orchestrating traffic events streaming pipeline
+- Airflow DAG orchestrating Kafka streaming ingestion
 
 ### **Transformation Layer**
 - dbt models (staging → core → marts)
