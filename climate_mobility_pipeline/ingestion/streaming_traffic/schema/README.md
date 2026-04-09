@@ -10,7 +10,7 @@ These events simulate real-world traffic telemetry and are used to populate the 
 
 ---
 
-## Event Structure
+## 🏗️ Event Structure
 
 Each traffic event is a JSON object with the following fields:
 - `event_id` [`string`]: unique identifier assigned by the producer  
