@@ -1,0 +1,8 @@
+{
+  "event_id": "uuid",
+  "timestamp": "ISO8601 string",
+  "vehicle_id": "string",
+  "road_segment": "string",
+  "speed": "float",
+  "event_type": "speed_update | congestion | anomaly"
+}
