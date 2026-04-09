@@ -1,5 +1,7 @@
+import logging
 from datetime import datetime, timedelta
 
+logger = logging.getLogger(__name__)
 
 class ReplayController:
     """
