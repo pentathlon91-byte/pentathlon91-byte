@@ -51,6 +51,9 @@ streaming:
     start: "2014-02-01T00:00:00"
     end:   "2014-03-03T00:00:00"
     speed_multiplier: 3600
+    interval_minutes: 1
+  simulation:
+    events_per_minute: 20
   kafka:
     bootstrap_servers: "localhost:9092"
     topic: "traffic_events"
