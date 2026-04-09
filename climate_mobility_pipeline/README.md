@@ -83,7 +83,7 @@ curated/
 ```
 
 ### **Orchestration Layer**
-- Airflow DAG orchestrating API, batch, and streaming pipelines
+- Airflow DAG orchestrating traffic events streaming pipeline
 
 ### **Transformation Layer**
 - dbt models (staging → core → marts)
@@ -96,9 +96,12 @@ curated/
 
 ## 🧪 Current Status
 
-✔ Weather API ingestion implemented  
-✔ Batch mobility ingestion implemented  
-⬜ Kafka streaming pipeline  
+✔ Weather API ingestion  
+✔ Batch mobility ingestion  
+⬜ Kafka streaming pipeline
+  - ✔ Defined event schema
+  - ✔ Designed helper modules
+
 ⬜ Airflow orchestration  
 ⬜ dbt transformations  
 ⬜ Analytics dashboard
@@ -128,10 +131,15 @@ climate_mobility_pipeline/
     batch_mobility/
       load_mobility.py
       parse_mobility.py
+    streaming_traffic/
+      schema/
+        traffic_event.json
 
   utils/
     azure_utils.py
+    event_generator.py
     extract_tar_archive.py
+    replay_controller.py
     write_parquet.py
 
   config_loader.py
